@@ -1,5 +1,6 @@
 package com.elaine.customer;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class CustomerControllerV2 {
     }
 
     @PostMapping
-    void createNewCustomer(@RequestBody Customer customer){
+    void createNewCustomer(@Valid @RequestBody Customer customer){
         System.out.println("POST REQUEST..");
         System.out.println(customer);
     }
