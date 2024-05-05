@@ -1,5 +1,6 @@
 package com.elaine.customer;
 
+import com.elaine.exception.ApiRequestException;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,14 @@ public class CustomerControllerV2 {
     Customer getCustomer(@PathVariable("customerId") Long id){
         return customerService.getCustomer(id);
     }
+
+    @GetMapping(path = "{customerId}/exception")
+    Customer getCustomerException(@PathVariable("customerId") Long id){
+       throw new ApiRequestException(
+               "ApiRequestException for customer " + id
+       );
+    }
+
 
     @PostMapping
     void createNewCustomer(@Valid @RequestBody Customer customer){
